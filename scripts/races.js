@@ -1,4 +1,3 @@
-import _ from "lodash";
 import moment from "moment-timezone";
 import { v4 as uuid } from "uuid";
 
@@ -53,7 +52,7 @@ export async function insertRaces(startDate, endDate) {
   );
 
   const races = [];
-
+  const sample = (arr) => arr[Math.random() * arr.length];
   for (let i = 0; i <= days; i++) {
     for (let j = 0; j < 24; j++) {
       const startAt = moment(start).add(i, "days").add(j, "hours");
@@ -66,7 +65,7 @@ export async function insertRaces(startDate, endDate) {
             3,
             "0",
           )}.jpg`,
-          name: _.sample(NAMES),
+          name: sample(NAMES),
           startAt: startAt.toDate(),
         }),
       );
