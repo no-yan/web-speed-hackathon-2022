@@ -13,34 +13,13 @@ const RaceCard = lazy(() => import("./pages/races/RaceCard"));
 export const Routes = () => {
   return (
     <RouterRoutes>
-      <Route
-        element={
-          // <Suspense>
-          <CommonLayout />
-          // </Suspense>
-        }
-        path="/"
-      >
+      <Route element={<CommonLayout />} path="/">
         <Route index element={<Top />} />
         <Route element={<Top />} path=":date" />
         <Route path="races/:raceId">
-          <Route
-            element={
-              // <React.Suspense fallback={<>...</>}>
-              <RaceCard />
-              // </React.Suspense>
-            }
-            path="race-card"
-          />
+          <Route element={<RaceCard />} path="race-card" />
           <Route element={<Odds />} path="odds" />
-          <Route
-            element={
-              <React.Suspense fallback={<>...</>}>
-                <RaceResult />
-              </React.Suspense>
-            }
-            path="result"
-          />
+          <Route element={<RaceResult />} path="result" />
         </Route>
       </Route>
     </RouterRoutes>
