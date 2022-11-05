@@ -2,7 +2,11 @@
 const path = require("path");
 
 const CopyPlugin = require("copy-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const nodeExternals = require("webpack-node-externals");
+const { node } = require("webpack");
 
 function abs(...args) {
   return path.join(__dirname, ...args);
@@ -18,7 +22,7 @@ module.exports = [
   {
     devtool: "inline-source-map",
     entry: path.join(SRC_ROOT, "client/index.jsx"),
-    mode: "development",
+    mode: process.env.NODE_ENV,
     module: {
       rules: [
         {
@@ -34,22 +38,17 @@ module.exports = [
           use: {
             loader: "babel-loader",
             options: {
-              presets: [
-                [
-                  "@babel/preset-env",
-                  {
-                    modules: "cjs",
-                    spec: true,
-                  },
-                ],
-                "@babel/preset-react",
-              ],
+              presets: ["@babel/preset-react"],
             },
           },
         },
       ],
     },
     name: "client",
+    optimization: {
+      minimize: true,
+      minimizer: [new TerserPlugin()],
+    },
     output: {
       path: DIST_PUBLIC,
     },
@@ -57,6 +56,7 @@ module.exports = [
       new CopyPlugin({
         patterns: [{ from: PUBLIC_ROOT, to: DIST_PUBLIC }],
       }),
+      new BundleAnalyzerPlugin(),
     ],
     resolve: {
       extensions: [".js", ".jsx"],

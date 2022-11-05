@@ -19,7 +19,8 @@
     "lint:eslint:fix": "eslint --ext '.mjs,.js,.jsx' --fix .",
     "lint:stylelint": "stylelint --ignore-path .gitignore './**/*.css' './**/*.jsx'",
     "lint:stylelint:fix": "stylelint --ignore-path .gitignore --fix './**/*.css' './**/*.jsx'",
-    "init:seeds": "ts-node-transpile-only scripts/init.js"
+    "init:seeds": "ts-node-transpile-only scripts/init.js",
+    "prepare:bankCode": "ts-node-transpile-only scripts/bankEntries.js"
   },
   "devDependencies": {
     "@babel/core": "^7.16.7",
@@ -54,10 +55,12 @@
     "stylelint-config-recommended": "^7.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-order": "^5.0.0",
+    "terser-webpack-plugin": "^5.3.6",
     "ts-node": "^10.9.1",
     "typescript": "^4.6.2",
     "wait-on": "^6.0.0",
     "webpack": "^5.65.0",
+    "webpack-bundle-analyzer": "^4.7.0",
     "webpack-cli": "^4.9.1",
     "webpack-node-externals": "^3.0.0"
   },
