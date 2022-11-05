@@ -36,7 +36,22 @@ module.exports = [
           use: {
             loader: "babel-loader",
             options: {
-              presets: ["@babel/preset-react"],
+              exclude: [
+                /node_modules\/react/,
+                /node_modules\/moment/,
+                /node_modules\/lodash/,
+              ],
+              presets: [
+                [
+                  "@babel/preset-env",
+                  {
+                    bugfixes: true,
+                    corejs: { version: "3.26" },
+                    useBuiltIns: "usage",
+                  },
+                ],
+                "@babel/preset-react",
+              ],
             },
           },
         },
@@ -73,11 +88,17 @@ module.exports = [
           use: {
             loader: "babel-loader",
             options: {
+              exclude: [
+                /node_modules\/react/,
+                /node_modules\/urijs/,
+                /node_modules\/axios/,
+              ],
               presets: [
                 [
                   "@babel/preset-env",
                   {
                     bugfixes: true,
+                    corejs: { version: "3.26" },
                     useBuiltIns: "usage",
                   },
                 ],
