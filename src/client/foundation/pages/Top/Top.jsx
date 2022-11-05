@@ -1,4 +1,3 @@
-import _ from "lodash";
 import moment from "moment-timezone";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -18,6 +17,12 @@ import { ChargeDialog } from "./internal/ChargeDialog";
 import { HeroImage } from "./internal/HeroImage";
 import { RecentRaceList } from "./internal/RecentRaceList";
 
+// WARNING: This is not a drop in replacement solution and
+// it might not work for some edge cases. Test your code!
+const difference = (arr1, arr2) => arr1.filter((x) => !arr2.includes(x));
+// WARNING: This is not a drop in replacement solution and
+// it might not work for some edge cases. Test your code!
+const slice = (arr, start, end) => [...arr.slice(start, end)];
 /**
  * @param {Model.Race[]} races
  * @returns {Model.Race[]}
@@ -31,7 +36,7 @@ function useTodayRacesWithAnimation(races) {
 
   useEffect(() => {
     const isRacesUpdate =
-      _.difference(
+      difference(
         races.map((e) => e.id),
         prevRaces.current.map((e) => e.id),
       ).length !== 0;
@@ -62,7 +67,7 @@ function useTodayRacesWithAnimation(races) {
       }
 
       numberOfRacesToShow.current++;
-      setRacesToShow(_.slice(races, 0, numberOfRacesToShow.current));
+      setRacesToShow(slice(races, 0, numberOfRacesToShow.current));
     }, 100);
   }, [isRacesUpdate, races]);
 
