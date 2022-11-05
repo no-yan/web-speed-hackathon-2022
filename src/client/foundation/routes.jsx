@@ -1,52 +1,38 @@
-import React from "react";
+import React, { lazy } from "react";
 import { Route, Routes as RouterRoutes } from "react-router-dom";
 
 import { CommonLayout } from "./layouts/CommonLayout";
 import { Top } from "./pages/Top";
-const Odds = React.lazy(() => import("./pages/races/Odds"));
+const Odds = lazy(() => import("./pages/races/Odds"));
 
-const RaceResult = React.lazy(() => import("./pages/races/RaceResult"));
+const RaceResult = lazy(() => import("./pages/races/RaceResult"));
 
-const RaceCard = React.lazy(() => import("./pages/races/RaceCard"));
+const RaceCard = lazy(() => import("./pages/races/RaceCard"));
 
 /** @type {React.VFC} */
 export const Routes = () => {
   return (
     <RouterRoutes>
-      <Route element={<CommonLayout />} path="/">
-        <Route
-          index
-          element={
-            <React.Suspense fallback={<>...</>}>
-              <Top />
-            </React.Suspense>
-          }
-        />
-        <Route
-          element={
-            <React.Suspense fallback={<>...</>}>
-              <Top />
-            </React.Suspense>
-          }
-          path=":date"
-        />
+      <Route
+        element={
+          // <Suspense>
+          <CommonLayout />
+          // </Suspense>
+        }
+        path="/"
+      >
+        <Route index element={<Top />} />
+        <Route element={<Top />} path=":date" />
         <Route path="races/:raceId">
           <Route
             element={
-              <React.Suspense fallback={<>...</>}>
-                <RaceCard />
-              </React.Suspense>
+              // <React.Suspense fallback={<>...</>}>
+              <RaceCard />
+              // </React.Suspense>
             }
             path="race-card"
           />
-          <Route
-            element={
-              <React.Suspense fallback={<>...</>}>
-                <Odds />
-              </React.Suspense>
-            }
-            path="odds"
-          />
+          <Route element={<Odds />} path="odds" />
           <Route
             element={
               <React.Suspense fallback={<>...</>}>
