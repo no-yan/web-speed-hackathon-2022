@@ -6,7 +6,6 @@ const TerserPlugin = require("terser-webpack-plugin");
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const nodeExternals = require("webpack-node-externals");
-const { node } = require("webpack");
 
 function abs(...args) {
   return path.join(__dirname, ...args);
@@ -22,7 +21,6 @@ module.exports = [
   {
     devtool: "inline-source-map",
     entry: path.join(SRC_ROOT, "client/index.jsx"),
-    mode: process.env.NODE_ENV,
     module: {
       rules: [
         {
@@ -46,7 +44,7 @@ module.exports = [
     },
     name: "client",
     optimization: {
-      minimize: true,
+      chunkIds: "named",
       minimizer: [new TerserPlugin()],
     },
     output: {
@@ -67,7 +65,6 @@ module.exports = [
     devtool: "inline-source-map",
     entry: path.join(SRC_ROOT, "server/index.js"),
     externals: [nodeExternals()],
-    mode: "development",
     module: {
       rules: [
         {
