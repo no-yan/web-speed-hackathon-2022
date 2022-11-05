@@ -1,4 +1,3 @@
-import _ from "lodash";
 import React from "react";
 import styled from "styled-components";
 
@@ -64,13 +63,17 @@ const RankNo = styled.div`
  * @property {(odds: Model.OddsItem) => void} onClickOdds
  */
 
+// WARNING: This is not a drop in replacement solution and
+// it might not work for some edge cases. Test your code!
+const take = (arr, qty = 1) => [...arr].splice(0, qty);
+
 /** @type {React.VFC<Props>} */
 export const OddsRankingList = ({ isRaceClosed, odds, onClickOdds }) => {
-  const sortedOdds = _.take(
-    _.sortBy(odds, (item) => item.odds),
+  const sortedOdds = take(
+    // _.sortBy(odds, (item) => item.odds),
+    odds.sort((a, b) => a.odds - b.odds),
     50,
   );
-
   return (
     <Wrapper>
       {sortedOdds.map((item, i) => (
