@@ -22,6 +22,7 @@
     "lint:stylelint": "stylelint --ignore-path .gitignore './**/*.css' './**/*.jsx'",
     "lint:stylelint:fix": "stylelint --ignore-path .gitignore --fix './**/*.css' './**/*.jsx'",
     "init:seeds": "ts-node-transpile-only scripts/init.js",
+    "compress:image": "ts-node-transpile-only scripts/compressImages.mjs",
     "prepare:bankCode": "ts-node-transpile-only scripts/bankEntries.js"
   },
   "devDependencies": {
@@ -45,6 +46,8 @@
     "eslint-plugin-react": "^7.29.3",
     "eslint-plugin-react-hooks": "^4.3.0",
     "eslint-plugin-sort": "^2.4.0",
+    "imagemin": "^8.0.1",
+    "imagemin-webp": "^7.0.0",
     "nodemon": "^2.0.15",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.18",
