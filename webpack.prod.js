@@ -1,4 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const config = require("./webpack.common");
+const { merge } = require("webpack-merge");
 
-module.exports = config;
+const config = require("./webpack.common");
+const client = config[0];
+const server = config[1];
+
+module.exports = [
+  merge(client, { mode: "production" }),
+  // not minified intentionally for TypeORM bug.
+  merge(server, { mode: "development" }),
+];

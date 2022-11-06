@@ -1,4 +1,16 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const config = require("./webpack.common");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const { merge } = require("webpack-merge");
 
-module.exports = config;
+const config = require("./webpack.common");
+const client = config[0];
+const server = config[1];
+
+module.exports = [
+  merge(client, {
+    mode: "development",
+    plugins: [new BundleAnalyzerPlugin()],
+  }),
+  server,
+];
