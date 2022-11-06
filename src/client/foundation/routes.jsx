@@ -2,7 +2,7 @@ import React, { lazy } from "react";
 import { Route, Routes as RouterRoutes } from "react-router-dom";
 
 import { CommonLayout } from "./layouts/CommonLayout";
-import { Top } from "./pages/Top";
+const Top = lazy(() => import("./pages/Top"));
 const Odds = lazy(() => import("./pages/races/Odds"));
 
 const RaceResult = lazy(() => import("./pages/races/RaceResult"));

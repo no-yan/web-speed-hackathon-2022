@@ -30,7 +30,7 @@ const slice = (arr, start, end) => [...arr.slice(start, end)];
 function useTodayRacesWithAnimation(races) {
   const [isRacesUpdate, setIsRacesUpdate] = useState(false);
   const [racesToShow, setRacesToShow] = useState([]);
-  const numberOfRacesToShow = useRef(0);
+  const numberOfRacesToShow = useRef(20);
   const prevRaces = useRef(races);
   const timer = useRef(null);
 
