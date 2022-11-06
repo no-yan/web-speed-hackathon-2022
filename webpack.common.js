@@ -47,6 +47,7 @@ module.exports = [
                   {
                     bugfixes: true,
                     corejs: { version: "3.26" },
+                    modules: "cjs",
                     useBuiltIns: "usage",
                   },
                 ],
@@ -69,7 +70,7 @@ module.exports = [
       new CopyPlugin({
         patterns: [{ from: PUBLIC_ROOT, to: DIST_PUBLIC }],
       }),
-      new BundleAnalyzerPlugin(),
+      // new BundleAnalyzerPlugin(),
     ],
     resolve: {
       extensions: [".js", ".jsx"],
@@ -80,6 +81,7 @@ module.exports = [
     devtool: "inline-source-map",
     entry: path.join(SRC_ROOT, "server/index.js"),
     externals: [nodeExternals()],
+    mode: "development",
     module: {
       rules: [
         {
@@ -99,6 +101,7 @@ module.exports = [
                   {
                     bugfixes: true,
                     corejs: { version: "3.26" },
+                    modules: "cjs",
                     useBuiltIns: "usage",
                   },
                 ],
