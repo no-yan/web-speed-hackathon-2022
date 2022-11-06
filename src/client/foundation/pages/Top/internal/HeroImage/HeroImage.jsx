@@ -14,5 +14,7 @@ const Image = styled.img`
 
 /** @type {React.VFC<Props>} */
 export const HeroImage = ({ url }) => {
-  return <Image alt="" src={url} />;
+  return (
+    <Image alt="" aspectRatio="16 / 9" loading="eager" src={url} width="100%" />
+  );
 };

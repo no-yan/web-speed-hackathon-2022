@@ -61,6 +61,7 @@ module.exports = [
     name: "client",
     optimization: {
       chunkIds: "named",
+      minimize: true,
       minimizer: [new TerserPlugin()],
     },
     output: {
