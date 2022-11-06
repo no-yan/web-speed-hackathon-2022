@@ -40,5 +40,5 @@ import React, { useEffect, useState } from "react";
 export const TrimmedImage = ({ height, src, width }) => {
   const webpSrc =
     src.slice(-3) === "jpg" ? src.slice(0, src.length - 3) + "webp" : src;
-  return <img height={height} src={webpSrc} width={width} />;
+  return <img height={height} loading="lazy" src={webpSrc} width={width} />;
 };
