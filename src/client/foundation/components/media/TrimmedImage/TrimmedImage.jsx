@@ -38,5 +38,7 @@ import React, { useEffect, useState } from "react";
 
 /** @type {React.VFC<Props>} */
 export const TrimmedImage = ({ height, src, width }) => {
-  return <img height={height} src={src} width={width} />;
+  const webpSrc =
+    src.slice(-3) === "jpg" ? src.slice(0, src.length - 3) + "webp" : src;
+  return <img height={height} src={webpSrc} width={width} />;
 };
